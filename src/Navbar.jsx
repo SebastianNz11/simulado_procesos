@@ -3,13 +3,13 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-success">
       <div className="container-fluid">
-      <Link
-              to="/"
-              className="nav-link active text-white fs-5 ms-4"
-              aria-current="page"
-            >
-              SIMULADOR DE PROCESOS
-            </Link>
+        <Link
+          to="/"
+          className="nav-link active text-white fs-5 ms-4"
+          aria-current="page"
+        >
+          SIMULADOR DE PROCESOS
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -45,7 +45,7 @@ export const Navbar = () => {
               className="nav-link active text-white fs-5"
               aria-current="page"
             >
-              FIFO vrs LIFO
+              LIFO vrs FIFO
             </Link>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import Swal from "sweetalert2";
 
-export const Fifo = () => {
+export const Lifo2 = () => {
   const [procesosLifo, setProcesosLifo] = useState([]);
   const [conteoProcesos, setConteoProcesos] = useState(0);
   const [vaciarPila, setVaciarPila] = useState(false);
@@ -35,19 +34,14 @@ export const Fifo = () => {
       const intervalId = setInterval(() => {
         if (procesosLifo.length > 0) {
           const nuevaPila = [...procesosLifo];
-          nuevaPila.pop(); // Eliminar el último elemento (último en entrar)
+          nuevaPila.shift(); // Eliminar el primer elemento (último en entrar)
           setProcesosLifo(nuevaPila);
         } else {
           clearInterval(intervalId);
-          Swal.fire({
-            title: "Pila vacía",
-            icon: "info",
-            confirmButtonText: "Llenar la pila",
-          }).then(() => {
-            reiniciarLlenado(); // Reiniciar el llenado al dar click en OK
-          });
+          // No se muestra la alerta
+          reiniciarLlenado(); // Reiniciar el llenado al dar click en OK
         }
-      }, 2000); // Vaciar la pila cada 2 segundos
+      }, 2000); // Vaciar la pila cada segundo
 
       return () => clearInterval(intervalId);
     }
@@ -55,34 +49,27 @@ export const Fifo = () => {
 
   useEffect(() => {
     if (alertaLlena) {
-      Swal.fire({
-        title: "Pila llena",
-        icon: "warning",
-        confirmButtonText: "Vaciar la pila",
-      }).then(() => {
-        setVaciarPila(true); // Iniciar el vaciado al dar click en OK
-        setAlertaLlena(false); // Resetear la alerta de "Pila llena"
-      });
+      // No se muestra la alerta
+      setVaciarPila(true); // Iniciar el vaciado al dar click en OK
+      setAlertaLlena(false); // Resetear la alerta de "Pila llena"
     }
   }, [alertaLlena]);
 
   return (
-    <>
-      <div className="container d-flex justify-content-center">
-        <div className="row col-4 mt-4">
-          <h2>FIFO</h2>
-          <div className="border border-4  border-black bg-light rounded-4">
-            {procesosLifo.map((proceso, index) => (
-              <div
-                className="border border-black border-2 bg-warning m-3 text-dark d-flex justify-content-center fs-5 rounded-1"
-                key={index}
-              >
-                {proceso}
-              </div>
-            ))}
-          </div>
+    <div className="container d-flex justify-content-center">
+      <div className="row col-4 mt-4">
+        <h2>LIFO</h2>
+        <div className="border border-4  border-black bg-light rounded-4">
+          {procesosLifo.map((proceso, index) => (
+            <div
+              className="border border-black border-2 bg-warning m-3 text-dark d-flex justify-content-center fs-5 rounded-1"
+              key={index}
+            >
+              {proceso}
+            </div>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
