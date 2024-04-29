@@ -40,6 +40,13 @@ export const Navbar = () => {
             >
               FIFO
             </Link>
+            <Link
+              to="/vrs"
+              className="nav-link active text-white fs-5"
+              aria-current="page"
+            >
+              FIFO vrs LIFO
+            </Link>
           </div>
         </div>
       </div>

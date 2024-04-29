@@ -40,7 +40,7 @@ export const Lifo = () => {
         } else {
           clearInterval(intervalId);
           Swal.fire({
-            title: "Pila vaciada",
+            title: "Pila vacía",
             icon: "info",
             confirmButtonText: "Llenar la pila",
           }).then(() => {
